@@ -24,17 +24,18 @@ var allYearsData = years.map(function(year){
             return d.rating === rating;
             }).length;
             
-        return {rating: rating, count: count};
+        return {rating: rating, counts: count};
             
         }); // end of rating counts
     
-    return {year: year, counts: ratingsCounts};
+    return {year: year, counts: ratingCounts};
         
     }); // end of allYearsData
 
    console.log(allYearsData);
 
 }); // end of dc.csv
+
 
 
 
