@@ -22,7 +22,7 @@ var allYearsData = yearRanges.map(function(range){
 
     var ratingCounts = ratings.map(function(rating)
         {
-        var count = yearData.filter(function(d){
+        var count = rangeData.filter(function(d){
             return d.rating === rating;
             }).length;
             
@@ -37,6 +37,7 @@ var allYearsData = yearRanges.map(function(range){
    console.log(allYearsData);
 
 }); // end of dc.csv
+
 
 
 
