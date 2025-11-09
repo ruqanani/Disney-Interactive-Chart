@@ -4,18 +4,20 @@ d3.csv("data/disney.csv", function(data)
     var filtered_data = data.filter(function(d) { 
         return d.type === "TV Show" && d.rating.startsWith("TV");
     });
+    
 
-var years = [];
-for (var y = 1980; y <= 2020; y+=5){
-    years.push(y);
+var yearRanges = [];
+for (var start = 1970; y <= 2020; start += 5){
+    years.push({start: start, end: start + 4});
 } // end of for loop
 
 var ratings = ["TV-Y", "TV-Y7", "TV-Y7-FV", "TV-G", "TV-PG", "TV-14"];
 
-var allYearsData = years.map(function(year){
+var allYearsData = yearRanges.map(function(range){
 
-    var yearData = filtered_data.filter(function(d){
-        return +d.release_year === year;
+    var rangeData = filtered_data.filter(function(d){
+        var year = +d.release_year;
+        return year >= range.start && year <= range.end;
     }); // end of yearData
 
     var ratingCounts = ratings.map(function(rating)
@@ -28,13 +30,14 @@ var allYearsData = years.map(function(year){
             
         }); // end of rating counts
     
-    return {year: year, counts: ratingCounts};
+    return {range: range.start + "-" + range.end, counts: ratingCounts};
         
     }); // end of allYearsData
 
    console.log(allYearsData);
 
 }); // end of dc.csv
+
 
 
 
