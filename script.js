@@ -7,7 +7,7 @@ d3.csv("data/disney.csv", function(data)
     
 
 var yearRanges = [];
-for (var start = 1970; y <= 2020; start += 5){
+for (var start = 1970; end <= 2020; start += 5){
     years.push({start: start, end: start + 4});
 } // end of for loop
 
@@ -37,6 +37,7 @@ var allYearsData = yearRanges.map(function(range){
    console.log(allYearsData);
 
 }); // end of dc.csv
+
 
 
 
