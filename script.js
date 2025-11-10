@@ -1,4 +1,13 @@
 
+
+
+
+
+
+
+
+
+
 d3.csv("data/disney.csv", function(data)
        {
     var filtered_data = data.filter(function(d) { 
@@ -37,9 +46,13 @@ var allYearsData = yearRanges.map(function(range){
     return {range: range.start + "-" + range.end, counts: ratingCounts};
         
     }); // end of allYearsData
-
+drawBarChart();
 
 }); // end of dc.csv
+
+
+
+
 
 
 
