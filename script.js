@@ -27,7 +27,7 @@ d3.csv("data/disney.csv", function(data) {
         return {range: range.start + "-" + range.end, counts: ratingCounts};
     }); // end of allYearsData
 
-    var tooltip = d3.select(#tooltip")
+    var tooltip = d3.select("#tooltip")
                 .append("div")
                 .style("opacity", 0)
                 .attr("class", "tooltip")
@@ -144,6 +144,7 @@ d3.csv("data/disney.csv", function(data) {
     drawBarChart(allYearsData[0].counts);
 
 }); // end of dc.csv
+
 
 
 
