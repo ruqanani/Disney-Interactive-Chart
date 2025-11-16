@@ -28,37 +28,28 @@ d3.csv("data/disney.csv", function(data) {
     }); // end of allYearsData
 
     var tooltip = d3.select("#tooltip")
-                .append("div")
                 .style("opacity", 0)
                 .attr("class", "tooltip")
                 .style("background-color", "black")
                 .style("color", "white")
-                .style("border-radus", "5px")
+                .style("border-radius", "5px")
                 .style("padding", "20px");
 
     // setting up tooltip
     var viewTooltip = function(d) {
-        tooltip
-        .transition()
-        .duration(100)
-        .style("opacity", 1)
-        tooltip
-        .html("Title Count: " + d.counts)
-        .style("left", (d3.mouse(this)[0] + 20) + "px")
-        .style("top", (d3.mouse(this)[0]) + "px")
+        tooltip.transition().duration(100).style("opacity", 1)
+        tooltip.html("Title Count: " + d.counts).style("left", (d3.mouse(this)[0] + 20) + "px")
+        .style("top", (d3.mouse(this)[1]) + "px")
     }
     
     var moveTooltip = function(d) {
-    tooltip
-    .style("left", (d3.mouse(this)[0]+20) + "px")
-    .style("top", (d3.mouse(this)[1]) + "px")
+    tooltip.style("left", (d3.mouse(this)[0]+20) + "px")
+    .style("top", (d3.mouse(this)[1]) + "px");
   }
 
   var hideTooltip = function(d) {
-    tooltip
-      .transition()
-      .duration(100)
-      .style("opacity", 0)
+    tooltip.transition().duration(100)
+      .style("opacity", 0);
   }
     
    // setting up slider
@@ -116,7 +107,10 @@ d3.csv("data/disney.csv", function(data) {
             .attr("x", function(d){ return xScale(d.rating); })
             .attr("y", function(d){ return yScale(d.counts); })
             .attr("height", function(d){ return height - yScale(d.counts); })
-            .attr("width", xScale.rangeBand());
+            .attr("width", xScale.rangeBand())
+            .on("mouseover", viewTooltip)
+            .on("mousemove", moveTooltip)
+            .on("mouseleave", hideTooltip);
 
         bars.exit().remove();
     }
@@ -144,6 +138,7 @@ d3.csv("data/disney.csv", function(data) {
     drawBarChart(allYearsData[0].counts);
 
 }); // end of dc.csv
+
 
 
 
