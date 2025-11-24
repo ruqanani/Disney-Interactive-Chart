@@ -132,9 +132,25 @@ var hideTooltip = function(d) {
         .attr("class", "y axis")
         .call(yAxis);
 
+    svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "middle")
+        .attr("x", width/2)
+        .attr("y", height + 40)
+        .text("TV Rating Category");
+
+    svg.append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "middle")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -height/2)
+        .attr("y", -40)
+        .text("Number of Series");
+    
     drawBarChart(allYearsData[0].counts);
 
 }); // end of dc.csv
+
 
 
 
