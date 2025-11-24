@@ -64,7 +64,7 @@ var hideTooltip = function(d) {
 
     var initialData = allYearsData[0].counts;
 
-    var margin = {top: 40, right: 20, bottom: 50, left: 50};
+    var margin = {top: 40, right: 30, bottom: 70, left: 60};
     var width = 700 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
 
@@ -148,6 +148,7 @@ var hideTooltip = function(d) {
     drawBarChart(allYearsData[0].counts);
 
 }); // end of dc.csv
+
 
 
 
