@@ -133,28 +133,6 @@ var hideTooltip = function(d) {
     }
 
 
-    // --- Legend --- //
-    var legend = svg.append("g")
-                    .attr("class", "legend")
-                    .attr("transform", "translate(" + (width + 10) + ",0)");
-
-    var leg_items = legend.selectAll(".legend-item")
-                          .data(ratings)
-                          .enter()
-                          .append("g")
-                          .attr("class", "legend-item")
-                          .attr("transform", function(d, i) {return "translate(0," + (i*25) + ")";});
-
-    leg_items.append("rect")
-            .attr("width", 18)
-            .attr("height", 18)
-            .attr("fill", function(d) { return color(d); });
-
-    leg_items.append("text")
-            .attr("x", 24)
-            .attr("y", 14)
-            .text(function(d) { return d; })
-            .style("font-size", "12px");
     
     // --- Axes --- //
     var xAxis = d3.svg.axis()
@@ -194,7 +172,32 @@ var hideTooltip = function(d) {
     
     drawBarChart(allYearsData[0].counts);
 
+
+      // --- Legend --- //
+    var legend = svg.append("g")
+                    .attr("class", "legend")
+                    .attr("transform", "translate(" + (width + 10) + ",0)");
+
+    var leg_items = legend.selectAll(".legend-item")
+                          .data(ratings)
+                          .enter()
+                          .append("g")
+                          .attr("class", "legend-item")
+                          .attr("transform", function(d, i) {return "translate(0," + (i*25) + ")";});
+
+    leg_items.append("rect")
+            .attr("width", 18)
+            .attr("height", 18)
+            .attr("fill", function(d) { return color(d); });
+
+    leg_items.append("text")
+            .attr("x", 24)
+            .attr("y", 14)
+            .text(function(d) { return d; })
+            .style("font-size", "12px");
+
 }); // end of dc.csv
+
 
 
 
