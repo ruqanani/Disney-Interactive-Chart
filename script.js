@@ -160,6 +160,17 @@ d3.csv("data/disney.csv", function(data) {
         .attr("class", "legend-item")
         .attr("transform", function(d,i){ return "translate(0," + (i*25) + ")"; });
 
+    legend.append("rect")
+        .attr("x", -10)
+        .attr("y", -10)
+        .attr("width", 200)
+        .attr("height", ratings.length * 25 + 10)
+        .attr("fill" "white")
+        .attr("stroke", "gray")
+        .attr("stroke-width", 1)
+        .lower();
+
+            
     leg_items.append("rect")
         .attr("width", 18)
         .attr("height", 18)
@@ -171,3 +182,4 @@ d3.csv("data/disney.csv", function(data) {
         .text(function(d){ return d; })
         .style("font-size", "12px");
 });
+
