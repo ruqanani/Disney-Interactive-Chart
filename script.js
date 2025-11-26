@@ -27,11 +27,14 @@ d3.csv("data/disney.csv", function(data) {
         return {range: range.start + "-" + range.end, counts: ratingCounts};
     }); // end of allYearsData
 
+
+    
 var tooltip = d3.select("#tooltip")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-    // setting up tooltip
+    
+    // --- setting up tooltip --- //
 var viewTooltip = function(d) {
     tooltip.transition().duration(100).style("opacity", 1);
 
@@ -48,8 +51,13 @@ var moveTooltip = function(d) {
 var hideTooltip = function(d) {
     tooltip.transition().duration(100).style("opacity", 0);
 }
+
+
+
+    // --- choosing colors --- //
     var color = d3.scale.category10();
-   // setting up slider
+    
+   // --- setting up slider --- //
     var slider = d3.select("#yearSlider")
                 .attr("max", allYearsData.length-1);
 
@@ -62,13 +70,18 @@ var hideTooltip = function(d) {
             yearLabel.text(allYearsData[index].range);
             }); // end of slider function
 
+
+    
     var initialData = allYearsData[0].counts;
 
+// ---  margins --- //    
     var margin = {top: 40, right: 30, bottom: 70, left: 60};
     var width = 700 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
 
-    // Scales
+
+    
+    // --- Scales --- //
     var xScale = d3.scale.ordinal()
         .domain(initialData.map(function(d){ return d.rating; }))
         .rangeRoundBands([0, width], 0.1);
@@ -77,7 +90,8 @@ var hideTooltip = function(d) {
         .domain([0, d3.max(initialData, function(d){ return d.counts; })])
         .range([height, 0]);
 
-    // SVG
+    
+    // --- SVG --- //
     var svg = d3.select("#main")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -87,6 +101,9 @@ var hideTooltip = function(d) {
         svg.select(".y.axis")
             .call(yAxis);
 
+
+// --- design bar --- //
+        
         var bars = svg.selectAll(".bar")
             .data(data);
 
@@ -111,7 +128,9 @@ var hideTooltip = function(d) {
         bars.exit().remove();
     }
 
-    // Axes
+
+    
+    // --- Axes --- //
     var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom");
@@ -121,7 +140,8 @@ var hideTooltip = function(d) {
         .orient("left")
         .ticks(5);
 
-    // Draw axes
+    
+    // --- Draw axes --- //
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
@@ -149,6 +169,7 @@ var hideTooltip = function(d) {
     drawBarChart(allYearsData[0].counts);
 
 }); // end of dc.csv
+
 
 
 
