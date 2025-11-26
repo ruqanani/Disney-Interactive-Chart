@@ -136,14 +136,14 @@ var hideTooltip = function(d) {
     // --- Legend --- //
     var legend = svg.append("g")
                     .attr("class", "legend")
-                    .attr("transform", "translate(" + (width+40) +",)");
+                    .attr("transform", "translate(" + (width+40) +",0)");
 
     var leg_items = legend.selectAll(".legend-item")
                           .data(ratings)
                           .enter()
                           .append("g")
                           .attr("class", "legend-item")
-                          .atttr("transform", function(d, i) {return "translate(" + (i+25) + ",)";});
+                          .attr("transform", function(d, i) {return "translate(0," + (i+25) + ")";});
 
     leg_items.append("rect")
             .attr("width", 18)
@@ -195,6 +195,7 @@ var hideTooltip = function(d) {
     drawBarChart(allYearsData[0].counts);
 
 }); // end of dc.csv
+
 
 
 
