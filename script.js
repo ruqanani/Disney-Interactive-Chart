@@ -48,7 +48,7 @@ var moveTooltip = function(d) {
 var hideTooltip = function(d) {
     tooltip.transition().duration(100).style("opacity", 0);
 }
-    
+    var color = d3.scale.category10();
    // setting up slider
     var slider = d3.select("#yearSlider")
                 .attr("max", allYearsData.length-1);
@@ -93,12 +93,13 @@ var hideTooltip = function(d) {
         bars.attr("x", function(d){ return xScale(d.rating); })
             .attr("y", function(d){ return yScale(d.counts); })
             .attr("height", function(d){ return height - yScale(d.counts); })
+            .attr("fill", function(d){ return color(d.rating); })
             .attr("width", xScale.rangeBand());
 
         bars.enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("fill", "#69b3a2")
+            .attr("fill", function(d){ return color(d.rating); })
             .attr("x", function(d){ return xScale(d.rating); })
             .attr("y", function(d){ return yScale(d.counts); })
             .attr("height", function(d){ return height - yScale(d.counts); })
@@ -148,6 +149,7 @@ var hideTooltip = function(d) {
     drawBarChart(allYearsData[0].counts);
 
 }); // end of dc.csv
+
 
 
 
